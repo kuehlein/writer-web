@@ -1,0 +1,51 @@
+header {
+  display: flex;
+  padding: 0.5em;
+  width: 100vw;
+  color: #fff;
+  background-color: #000;
+  z-index: 2;
+}
+
+header .logo {
+  flex-grow: 1;
+}
+header .logo img {
+  width: 1.8em;
+}
+header nav {
+  display: flex;
+}
+
+.nav-title {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.3em;
+  font-weight: 800;
+  color: #fff;
+  flex-grow: 0.73;
+}
+
+.nav-option {
+  font-family: 'Crimson Text', serif;
+  height: 1.5em;
+  margin: 0 1em 0.3em 0;
+}
+
+.nav-option a {
+  font-size: 1.3em;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5em;
+  transition: all 0.15s ease-in;
+}
+.nav-option a:hover {
+  border-radius: 5px;
+  background-color: #252525;
+}
+
+.main {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}

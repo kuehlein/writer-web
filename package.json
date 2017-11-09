@@ -1,0 +1,35 @@
+{
+  "name": "writer-web",
+  "version": "1.0.0",
+  "description": "An intuitive thought mapping software",
+  "main": "client/app.jsx",
+  "scripts": {
+    "build-client": "webpack",
+    "build-client-watch": "webpack -w",
+    "deploy": "script/deploy",
+    "seed": "node script/seed.js",
+    "start": "node server",
+    "start-dev": "npm run build-client-watch & npm run start-server",
+    "start-server": "NODE_ENV='development' nodemon server -e html,js,scss --ignore public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^0.17.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "morgan": "^1.8.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.2",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  },
+  "keywords": [],
+  "author": "Kyle Uehlein",
+  "license": "ISC"
+}
