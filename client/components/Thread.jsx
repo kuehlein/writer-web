@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getThread, createThread, editThread, deleteThread } from '../store'
+import { fetchThread, createThread, editThread, deleteThread } from '../store'
 
 class Thread extends Component {
   constructor (props) {
@@ -10,9 +10,11 @@ class Thread extends Component {
   }
 
   render () {
-    <div>
-      Thread
-    </div>
+    return (
+      <div>
+        Thread
+      </div>
+    )
   }
 
 }
@@ -23,7 +25,7 @@ const MapPropsToProps = state => ({
 })
 
 const MapDispatchToProps = dispatch => ({
-  getThread: threadId => dispatch(getThread(threadId)),
+  fetchThread: threadId => dispatch(fetchThread(threadId)),
   createThread: thread => dispatch(createThread(thread)),
   editThread: thread => dispatch(editThread(thread)),
   deleteThread: threadId => dispatch(deleteThread(threadId))

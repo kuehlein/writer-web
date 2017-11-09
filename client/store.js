@@ -1,11 +1,11 @@
 'use strict'
 
 import { createStore, applyMiddleware } from 'redux'
-import createLogger from 'redux-logger'
+import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import rootReducer from './reducers'
+import rootReducer from './store/index'
 
 
 const middleware = composeWithDevTools(
@@ -15,4 +15,4 @@ const middleware = composeWithDevTools(
 
 export default createStore(rootReducer, middleware)
 
-export * from './reducers'
+export * from './store/index'

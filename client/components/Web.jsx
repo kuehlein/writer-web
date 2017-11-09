@@ -10,9 +10,11 @@ class Web extends Component {
   }
 
   render () {
-    <div>
-      Web
-    </div>
+    return (
+      <div>
+        Web
+      </div>
+    )
   }
 
 }
@@ -22,7 +24,7 @@ const MapPropsToProps = state => ({
 })
 
 const MapDispatchToProps = dispatch => ({
-  fetchWebs: web => dispatch(fetchWeb(web))
+  fetchWeb: web => dispatch(fetchWeb(web))
 })
 
 

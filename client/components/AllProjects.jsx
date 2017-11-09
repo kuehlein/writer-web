@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { fetchProjects } from '../store'
 
 class AllProjects extends Component {
   constructor (props) {
@@ -9,16 +10,22 @@ class AllProjects extends Component {
   }
 
   render () {
-    <div>
-      All Projects
-    </div>
+    return (
+      <div>
+        All Projects
+      </div>
+    )
   }
 
 }
 
-const MapPropsToProps = () => ({})
+const MapPropsToProps = state => ({
+  projects: state.allProjects
+})
 
-const MapDispatchToProps = () => ({})
+const MapDispatchToProps = dispatch => ({
+  fetchProjects: projects => dispatch(fetchProjects(projects))
+})
 
 
 export default connect(MapPropsToProps, MapDispatchToProps)(AllProjects)

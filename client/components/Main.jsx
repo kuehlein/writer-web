@@ -3,10 +3,11 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
-import { Home, AllProjects, Web } from './'
+import { Home, AllProjects, Web, Root } from './'
+import '../../public/style/index.scss'
 
 
-const Main = () => {
+const Main = () => (
   <Root>
     <Switch>
       <Route exact path='/' component={ Home } />
@@ -15,6 +16,6 @@ const Main = () => {
       <Redirect to='/' />
     </Switch>
   </Root>
-}
+)
 
-export default Main;
+export default Main
