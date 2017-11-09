@@ -17,7 +17,7 @@ export const getProjects = (projects) => ({
 /*----- thunk creators -----*/
 export const fetchProjects = () =>
   dispatch =>
-    axios.get('/api/projects/')
+    axios.get('/api/webs/')
       .then(res => dispatch(getProject(res.data)))
       .catch(err => console.log(err))
 

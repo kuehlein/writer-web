@@ -1,9 +1,14 @@
+body {
+  background-color: #1b1a19;
+  color: #e0d9ce;
+}
+
 header {
   display: flex;
   padding: 0.5em;
   width: 100vw;
-  color: #fff;
-  background-color: #000;
+  color: #1b1a19;
+  background-color: #e0d9ce;
   z-index: 2;
 }
 
@@ -18,29 +23,27 @@ header nav {
 }
 
 .nav-title {
-  font-family: 'Crimson Text', serif;
   font-size: 1.3em;
   font-weight: 800;
-  color: #fff;
+  color: #1b1b19;
   flex-grow: 0.73;
 }
 
 .nav-option {
-  font-family: 'Crimson Text', serif;
   height: 1.5em;
   margin: 0 1em 0.3em 0;
 }
 
 .nav-option a {
   font-size: 1.3em;
-  color: #fff;
+  color: #1b1b19;
   text-decoration: none;
   padding: 0.5em;
   transition: all 0.15s ease-in;
 }
 .nav-option a:hover {
   border-radius: 5px;
-  background-color: #252525;
+  background-color: #b0a99c;
 }
 
 .main {

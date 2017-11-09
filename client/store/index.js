@@ -16,4 +16,6 @@ const rootReducer = combineReducers({
 
 export default rootReducer
 
-export * from  './allProjects'
+export * from './allProjects'
+export * from './web'
+export * from './thread'

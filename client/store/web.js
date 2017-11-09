@@ -15,9 +15,9 @@ export const getWeb = (web) => ({
 
 
 /*----- thunk creators -----*/
-export const fetchWeb = () =>
+export const fetchWeb = webId =>
   dispatch =>
-    axios.get('/api/projects/')
+    axios.get(`/api/webs/${webId}`)
       .then(res => dispatch(getWeb(res.data)))
       .catch(err => console.log(err))
 
