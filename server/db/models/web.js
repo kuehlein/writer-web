@@ -5,6 +5,10 @@ const Schema = mongoose.Schema
 
 
 const webSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
   children: [{ type: Schema.ObjectId, ref: 'child' }]
 }, {
   minimize: false,
@@ -18,11 +22,6 @@ webSchema.set('toObject', { getters: true })
 
 
 const Web = mongoose.model('Web', webSchema)
-
-
-// query helper
-webSchema.query.byName = web =>
-  this.find({ web: new RegExp(web, 'i') })
 
 
 module.exports = Web

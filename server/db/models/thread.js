@@ -5,13 +5,15 @@ const Schema = mongoose.Schema
 
 
 const threadSchema = new Schema({
-  coordinates: {                      // validate (required)
+  name: String,
+  coordinates: {
     point1: { x: Number, y: Number },
     point2: { x: Number, y: Number },
     point3: { x: Number, y: Number },
-    point4: { x: Number, y: Number }
+    point4: { x: Number, y: Number },
+    required: true
   },
-  color: String,                      // default ('#000')
+  color: { type: String, default: '#e0d9ce' },
   content: String,
   connections: [Schema.ObjectId]
 }, {
@@ -28,13 +30,19 @@ threadSchema.set('toObject', { getters: true })
 const Thread = mongoose.model('Thread', threadSchema)
 
 
-// instance method
-threadSchema.methods.findSimilarTypes = cb =>
-  this.model('Thread').find({ type: this.type }, cb)
+// find data for relative, store as a virtual
+threadSchema.methods.findRelative = (id, relationship) =>
+  Thread.findById(id, `${relationship}Data`, (err, doc) => {
+    if (err) console.log('There was an error retreving the data', err)
+    else return threadSchema.virtual(`${relationship}`).get(() => doc)
+  })
 
-// static method
-threadSchema.statics.findByName = (name, cb) =>
-  this.find({ name: new RegExp(name, 'i') }, cb)
+// find data for all connections (parent OR child)
+threadSchema.methods.findAllRelatives = (relationship) =>
+  Thread.findAll((err, doc) => {
+    if (err) console.log('There was an error retreving the data', err)
+    else return this.connections.map(id => this.findRelative(id, relationship))
+  })
 
 
 module.exports = Thread
