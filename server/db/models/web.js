@@ -6,9 +6,19 @@ const Schema = mongoose.Schema
 
 const webSchema = new Schema({
   children: [{ type: Schema.ObjectId, ref: 'child' }]
+}, {
+  minimize: false,
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
 })
 
+webSchema.set('toObject', { getters: true })
+
+
 const Web = mongoose.model('Web', webSchema)
+
 
 // query helper
 webSchema.query.byName = web =>

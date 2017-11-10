@@ -2,12 +2,11 @@
 
 const Thread = require('./thread')
 const Web = require('./web')
-
-
-// associations???
+const Connection = require('./connection')
 
 
 module.exports = {
+  Web,
   Thread,
-  Web
+  Connection
 }
