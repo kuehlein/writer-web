@@ -5,12 +5,16 @@ import { combineReducers } from 'redux'
 import allProjects from './allProjects'
 import web from './web'
 import thread from './thread'
+import connection from './connection'
+import allConnections from './allConnections'
 
 
 const rootReducer = combineReducers({
   allProjects,
   web,
-  thread
+  thread,
+  connection,
+  allConnections
 })
 
 
@@ -19,3 +23,5 @@ export default rootReducer
 export * from './allProjects'
 export * from './web'
 export * from './thread'
+export * from './connection'
+export * from './allConnections'

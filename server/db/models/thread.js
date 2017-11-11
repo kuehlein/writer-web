@@ -13,7 +13,7 @@ const threadSchema = new Schema({
     point4: { x: Number, y: Number },
     required: true
   },
-  color: { type: String, default: '#e0d9ce' },
+  color: { type: String, default: '#e0d9ce' }, // make it enum
   content: String,
   connections: [Schema.ObjectId]
 }, {
@@ -28,6 +28,10 @@ threadSchema.set('toObject', { getters: true })
 
 
 const Thread = mongoose.model('Thread', threadSchema)
+
+
+// find point of parent/child???
+      // come back when d3 worked out
 
 
 // find data for relative, store as a virtual

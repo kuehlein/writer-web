@@ -1,7 +1,7 @@
 {
   "name": "writer-web",
   "version": "1.0.0",
-  "description": "An intuitive thought mapping software",
+  "description": "An intuitive mind mapping software",
   "main": "client/app.jsx",
   "scripts": {
     "build-client": "webpack",

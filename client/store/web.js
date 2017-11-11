@@ -8,7 +8,7 @@ const GET_WEB = 'GET_WEB'
 
 
 /*----- action creators -----*/
-export const getWeb = (web) => ({
+export const getWeb = web => ({
   type: GET_WEB,
   web
 })

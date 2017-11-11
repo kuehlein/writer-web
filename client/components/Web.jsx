@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchWeb } from '../store'
+import MapThreads from './MapThreads'
 
 class Web extends Component {
   constructor (props) {
@@ -12,7 +13,7 @@ class Web extends Component {
   render () {
     return (
       <div>
-        Web
+        <MapThreads />
       </div>
     )
   }

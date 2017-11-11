@@ -21,6 +21,9 @@ export const fetchProjects = () =>
       .then(res => dispatch(getProject(res.data)))
       .catch(err => console.log(err))
 
+// find all parents / children (version control)
+    // recursive search
+
 
 /*----- reducer -----*/
 export default (state = [], action) => {
