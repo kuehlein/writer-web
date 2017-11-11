@@ -21,25 +21,25 @@ const deleteThread = thread => ({ type: DELETE_THREAD, thread })
 /**
  * THUNK CREATORS
  */
-export const fetchThread = (threadId) =>
+export const fetchThread = threadId/* , relationship */ =>
   dispatch =>
-    axios.get(`/api/threads/${threadId}`)
+    axios.get(`/api/threads/${threadId}`/* , relationship */)
       .then(res => dispatch(getThread(res.data)))
       .catch(err => console.log(err))
 
-export const makeThread = (thread) =>
+export const makeThread = thread =>
   dispatch =>
     axios.post('/api/threads/', thread)
       .then(res => dispatch(createThread(res.data)))
       .catch(err => console.log(err))
 
-export const changeThread = (thread) =>
+export const changeThread = thread =>
   dispatch => {
     axios.put(`/api/threads/${thread.id}`, thread)
       .then(res => dispatch(editThread(res.data)))
       .catch(err => console.log(err)) }
 
-export const removeThread = (threadId) =>
+export const removeThread = threadId =>
   dispatch =>
     axios.delete(`/api/threads/${threadId}`)
       .then(res => dispatch(deleteThread(res.data)))
