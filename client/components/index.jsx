@@ -10,9 +10,7 @@ export { default as Home } from './Home'
 export { default as AllProjects } from './AllProjects'
 export { default as Web } from './Web'
 export { default as Thread } from './Thread'
-
 export { default as Connection } from './Connection'
-export { default as AllConnections } from './AllConnections'
 
 export { default as MapThreads } from './MapThreads'
 export { default as Chart } from './Chart'
