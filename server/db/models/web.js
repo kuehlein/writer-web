@@ -9,9 +9,9 @@ const webSchema = new Schema({
     type: String,
     required: true
   },
-  threads: [Schema.ObjectId],
-  parent: Schema.ObjectId,
-  children: [Schema.ObjectId]
+  threads: [{ type: Schema.ObjectId, ref: 'thread' }],
+  parent: { type: Schema.ObjectId, ref: 'web' },
+  children: [{ type: Schema.ObjectId, ref: 'web' }]
 }, {
   minimize: false,
   timestamps: {
@@ -23,7 +23,7 @@ const webSchema = new Schema({
 webSchema.set('toObject', { getters: true })
 
 
-const Web = mongoose.model('Web', webSchema)
+const Web = mongoose.model('web', webSchema)
 
 
 webSchema.methods.findParent = (id) =>

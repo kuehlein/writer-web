@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 
-const PORT = process.env.PORT || 1111
+const PORT = process.env.PORT || 27017
 const app = express()
 
 
@@ -25,17 +25,6 @@ const createApp = () => {
   // static file-serving middleware
   app
     .use(express.static(path.join(__dirname, '..', 'public')))
-    .use((req, res, next) => {
-      if (path.extname(req.path).length) {
-        const err = new Error('Not found')
-        err.status = 404
-        next(err)
-        return null
-      } else {
-        next()
-        return null
-      }
-    })
 
   // sends index.html
   app.use('*', (req, res) => {
@@ -57,7 +46,7 @@ const startListening = () => {
 }
 
 // connect to database
-mongoose.connect('mongodb://27017/ww')
+mongoose.connect(`localhost://${PORT}/writer-web`)
 
 createApp()
 startListening()

@@ -4,7 +4,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
 
-// tomporary navbar (look into semantic ui navbar)
+// temporary navbar (look into semantic ui navbar)
 
 const Navbar = () => (
   <header>
