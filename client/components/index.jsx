@@ -13,4 +13,6 @@ export { default as Thread } from './Thread'
 export { default as Connection } from './Connection'
 
 export { default as MapThreads } from './MapThreads'
+export { default as Deck } from './Deck'
 export { default as Chart } from './Chart'
+export { default as Stage } from './Stage'

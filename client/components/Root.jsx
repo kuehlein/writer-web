@@ -6,8 +6,7 @@ import { Navbar, Sidebar } from './'
 
 const Root = ({ children }) => (
   <div>
-    <Navbar />
-    <Sidebar />
+    <Navbar className='layer3' />
     <div className='main'>
       { children }
     </div>

@@ -3,17 +3,13 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import { connect } from 'react-redux'
-import { DropTarget, DragDropContext } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
+import { DropTarget } from 'react-dnd'
 import * as d3 from 'd3'
+import { THREAD_WEB } from '../store'
 import { Web } from './'
 
 
 const random = d3.randomNormal(5, 1)
-
-const Types = { THREAD_WEB: 'THREAD_WEB' }
-
-//const svg = d3.select('body').append('svg')
 
 
 // Specifies which props to inject into your component
@@ -51,10 +47,12 @@ class Chart extends Component {
     this.setState({ zoomTransform: d3.event.transform })
   }
 
+
+  // do i need to render draggable items outside of the drop target???
   render () {
     const { zoomTransform } = this.state
     const { width, height, connectDropTarget } = this.props
-console.log('hit')
+
     return connectDropTarget(
       <svg width={ width } height={ height } ref='svg'>
         <Web data={ this.state.data }
@@ -78,6 +76,5 @@ const MapDispatchToProps = dispatch => ({
 })
 
 
-DragDropContext(HTML5Backend)(Chart)
 DropTarget(Types.THREAD_WEB, {}, collect)(Chart)
 export default connect(MapPropsToProps, MapDispatchToProps)(Chart)
