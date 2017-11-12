@@ -3,13 +3,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { DragSource } from 'react-dnd'
-import { fetchThread, createThread, editThread, deleteThread } from '../store'
+import { fetchThread, createThread } from '../store'
 
 
-const cardSource = {
+const Types = { THREAD_WEB: 'THREAD_WEB' }
+
+// specifies dragSource contract
+const threadSource = {
   canDrag(props) {
-    // You can disallow drag based on props
-    return props.isReady;
+    return props.isReady
   },
 
   isDragging(props, monitor) {
@@ -17,53 +19,54 @@ const cardSource = {
     // (like a card in Kanban board dragged between lists)
     // you can implement something like this to keep its
     // appearance dragged:
-    return monitor.getItem().id === props.id;
+    return monitor.getItem().id === props.id
   },
 
   beginDrag(props, monitor, component) {
     // Return the data describing the dragged item
-    const item = { id: props.id };
-    return item;
+
+    // coords here???
+
+    const item = { id: props.id }
+    return item
   },
 
   endDrag(props, monitor, component) {
     if (!monitor.didDrop()) {
-      // You can check whether the drop was successful
-      // or if the drag ended but nobody handled the drop
-      return;
+      return
     }
 
     // When dropped on a compatible target, do something.
     // Read the original dragged item from getItem():
-    const item = monitor.getItem();
+    const item = monitor.getItem()
 
     // You may also read the drop result from the drop target
     // that handled the drop, if it returned an object from
     // its drop() method.
-    const dropResult = monitor.getDropResult();
+    const dropResult = monitor.getDropResult()
 
-    // This is a good place to call some Flux action
-    CardActions.moveCardToList(item.id, dropResult.listId);
+    CardActions.moveCardToList(item.id, dropResult.listId)
   }
 }
 
-(Types.CARD, cardSource, (connect, monitor) => ({
-  // Call this function inside render()
-  // to let React DnD handle the drag events:
-  connectDragSource: connect.dragSource(),
-  // You can ask the monitor about the current drag state:
-  isDragging: monitor.isDragging()
-}))
+// specifies the props to send to component
+const collect = (connect, monitor) => {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
+}
+
+
 class Thread extends Component {
   constructor (props) {
     super(props)
   }
 
   render () {
-    const x = this.props
     const { isDragging, connectDragSource } = this.props
 
-    return (
+    return connectDragSource(
       <div>
         I am a draggable card number {id}
         {isDragging && ' (and I am being dragged now)'}
@@ -80,10 +83,9 @@ const MapPropsToProps = state => ({
 
 const MapDispatchToProps = dispatch => ({
   fetchThread: threadId => dispatch(fetchThread(threadId)),
-  createThread: thread => dispatch(createThread(thread)),
-  editThread: thread => dispatch(editThread(thread)),
-  deleteThread: threadId => dispatch(deleteThread(threadId))
+  createThread: thread => dispatch(createThread(thread))
 })
 
 
+DragSource(Types.THREAD_WEB, threadSource, collect)(Thread)
 export default connect(MapPropsToProps, MapDispatchToProps)(Thread)
