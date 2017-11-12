@@ -7,15 +7,26 @@ const Schema = mongoose.Schema
 const threadSchema = new Schema({
   name: String,
   coordinates: {
-    point1: { x: Number, y: Number },
-    point2: { x: Number, y: Number },
-    point3: { x: Number, y: Number },
-    point4: { x: Number, y: Number },
-    required: true
+    point1: {
+      x: { type: Number, required: true },
+      y: { type: Number, required: true }
+    },
+    point2: {
+      x: { type: Number, required: true },
+      y: { type: Number, required: true }
+    },
+    point3: {
+      x: { type: Number, required: true },
+      y: { type: Number, required: true }
+    },
+    point4: {
+      x: { type: Number, required: true },
+      y: { type: Number, required: true }
+    }
   },
   color: { type: String, default: '#e0d9ce' }, // make it enum
   content: String,
-  connections: [Schema.ObjectId]
+  connections: [{ type: Schema.ObjectId, ref: 'connection' }]
 }, {
   minimize: false,
   timestamps: {
@@ -27,7 +38,7 @@ const threadSchema = new Schema({
 threadSchema.set('toObject', { getters: true })
 
 
-const Thread = mongoose.model('Thread', threadSchema)
+const Thread = mongoose.model('thread', threadSchema)
 
 
 // find point of parent/child???

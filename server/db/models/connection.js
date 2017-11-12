@@ -7,14 +7,12 @@ const { Thread } = require('./')
 
 const connectionSchema = new Schema({
   parent: {
-    type: Schema.ObjectId,
-    connectedOn: String,
-    required: true
+    _id: { type: Schema.ObjectId, ref: 'thread' },
+    connectedOn: { type: String, required: true },
   },
   child: {
-    type: Schema.ObjectId,
-    connectedOn: String,
-    required: true
+    _id: { type: Schema.ObjectId, ref: 'thread' },
+    connectedOn: { type: String, required: true }
   }
 }, {
   minimize: false,
@@ -27,7 +25,7 @@ const connectionSchema = new Schema({
 connectionSchema.set('toObject', { getters: true })
 
 
-const Connection = mongoose.model('Connection', connectSchema)
+const Connection = mongoose.model('connection', connectionSchema)
 
 
 // find coordinate OR data for relative, store as a virtual

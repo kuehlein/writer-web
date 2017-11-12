@@ -1,7 +1,6 @@
 const router = require('express').Router()
 
 
-router.use('/projects', require('./projects'))
 router.use('/webs', require('./webs'))
 router.use('/threads', require('./threads'))
 
