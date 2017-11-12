@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import { Home, AllProjects, Chart, Root } from './'
+import { Home, AllProjects, Stage, Root } from './'
 import '../../public/style/index.scss'
 
 
@@ -11,7 +11,7 @@ const Main = () => (
     <Switch>
       <Route exact path='/' component={ Home } />
       <Route exact path='/projects' component={ AllProjects } />
-      <Route exact path='/web' component={ Chart } />
+      <Route exact path='/web' component={ Stage } />
       <Redirect to='/' />
     </Switch>
   </Root>

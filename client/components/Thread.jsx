@@ -3,10 +3,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { DragSource } from 'react-dnd'
-import { fetchThread, createThread, sendUpdate } from '../store'
+import { fetchThread, createThread, sendUpdate, THREAD_WEB } from '../store'
 
-
-const Types = { THREAD_WEB: 'THREAD_WEB' }
 
 // specifies dragSource contract
 const threadSource = {
