@@ -5,9 +5,11 @@ import { findDOMNode } from 'react-dom'
 import { connect } from 'react-redux'
 import { DropTarget } from 'react-dnd'
 import * as d3 from 'd3'
-import { THREAD_WEB } from '../store'
+
 import { Web } from './'
 
+
+const Types = { THREAD_WEB: 'THREAD_WEB' }
 
 const random = d3.randomNormal(5, 1)
 
@@ -53,7 +55,7 @@ class Chart extends Component {
     const { zoomTransform } = this.state
     const { width, height, connectDropTarget } = this.props
 
-    return connectDropTarget(
+    return /*connectDropTarget*/(
       <svg width={ width } height={ height } ref='svg'>
         <Web data={ this.state.data }
              x={ 0 } y={ 0 }          // change this???
