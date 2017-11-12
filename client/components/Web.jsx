@@ -50,11 +50,12 @@ class Web extends React.Component {
 
     return (
       <g transform={this.transform} ref='scatterplot'>
-        {
+        <MapThreads web={ this.props.web } />
+        {/* {
           data.map(([x, y]) =>
             <circle cx={ this.xScale(x) } cy={ this.yScale(y) } r={ 4 } />
           )
-        }
+        } */}
       </g>
     )
   }

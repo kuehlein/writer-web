@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { DragSource } from 'react-dnd'
-import { fetchThread, createThread } from '../store'
+import { fetchThread, createThread, sendUpdate } from '../store'
 
 
 const Types = { THREAD_WEB: 'THREAD_WEB' }
@@ -61,16 +61,43 @@ const collect = (connect, monitor) => {
 class Thread extends Component {
   constructor (props) {
     super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange (event) {
+
+    // deconstruct d property on <path>
+    // reformat into thread object
+
+    this.props.sendUpdate(event.target.value) // change
   }
 
   render () {
-    const { isDragging, connectDragSource } = this.props
+    const {
+            isDragging,
+            connectDragSource,
+            content,
+            x,
+            y
+    } = this.props
 
     return connectDragSource(
-      <div>
-        I am a draggable card number {id}
-        {isDragging && ' (and I am being dragged now)'}
+      <div onChange={ e => this.handleChange(e) } >
+        { isDragging &&
+          <path d={ `M${x.x1} ${y.y1} L${x.x2} ${y.y2} L${x.x3} ${y.y3} L${x.x4} ${y.y4}Z` }
+                stroke-width={ this.props.stroke }
+                stroke={ this.props.strokeWidth }
+                fill={ this.props.fill } >
+            { content }
+          </path>
+        }
       </div>
+
+
+      // <div>
+      //   I am a draggable card number {id}
+      //   {isDragging && ' (and I am being dragged now)'}
+      // </div>
     )
   }
 
@@ -78,12 +105,12 @@ class Thread extends Component {
 
 const MapPropsToProps = state => ({
   web: state.web,
-  thread: state.thread
 })
 
 const MapDispatchToProps = dispatch => ({
   fetchThread: threadId => dispatch(fetchThread(threadId)),
-  createThread: thread => dispatch(createThread(thread))
+  createThread: thread => dispatch(createThread(thread)),
+  sendUpdate: thread => dispatch(sendUpdate(thread))
 })
 
 

@@ -11,22 +11,26 @@ class MapThreads extends Component {
   }
 
   render () {
+    const threads = this.props.web
+
     return (
       <div>
-        <Thread />
+        { threads &&
+          threads.map(thread => (
+            <div key={ thread._id } >
+              <Thread thread={ thread } />
+            </div>
+          ))
+        }
       </div>
     )
   }
 
 }
 
-const MapPropsToProps = state => ({
-  web: state.web
-})
-
 const MapDispatchToProps = dispatch => ({
   fetchWeb: web => dispatch(fetchWeb(web))
 })
 
 
-export default connect(MapPropsToProps, MapDispatchToProps)(MapThreads)
+export default connect(null, MapDispatchToProps)(MapThreads)

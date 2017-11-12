@@ -13,8 +13,10 @@ const random = d3.randomNormal(5, 1)
 
 const Types = { THREAD_WEB: 'THREAD_WEB' }
 
+//const svg = d3.select('body').append('svg')
 
-// Specifies which props to inject into your component.
+
+// Specifies which props to inject into your component
 const collect = (connect, monitor) => {
   return {
     connectDropTarget: connect.dropTarget(),
@@ -51,18 +53,16 @@ class Chart extends Component {
 
   render () {
     const { zoomTransform } = this.state
-    const { width, height, isOver, canDrop, connectDropTarget } = this.props
-
+    const { width, height, connectDropTarget } = this.props
+console.log('hit')
     return connectDropTarget(
       <svg width={ width } height={ height } ref='svg'>
-        { isOver && canDrop &&
-            <Web data={ this.state.data }
-                 x={ 0 } y={ 0 }          // change this???
-                 width={ width / 2 }
-                 height={ height }
-                 zoomTransform={ zoomTransform }
-                 zoomType='scale'/>
-        }
+        <Web data={ this.state.data }
+             x={ 0 } y={ 0 }          // change this???
+             width={ width / 2 }
+             height={ height }
+             zoomTransform={ zoomTransform }
+             zoomType='scale'/>
       </svg>
     )
   }
