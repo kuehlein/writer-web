@@ -2,7 +2,9 @@
 
 import React, { Component } from 'react'
 import HTML5Backend from 'react-dnd-html5-backend'
-import { Chart, Sidebar, Web, Deck } from './'
+import { DragDropContext } from 'react-dnd'
+import * as d3 from 'd3'
+import { Chart, Sidebar } from './'
 
 
 const svg = d3.select('body').append('svg')

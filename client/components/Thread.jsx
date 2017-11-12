@@ -3,51 +3,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { DragSource } from 'react-dnd'
-import { fetchThread, createThread, sendUpdate, THREAD_WEB } from '../store'
+import PropTypes from 'prop-types'
+import { fetchThread, createThread, sendUpdate } from '../store'
 
 
-// specifies dragSource contract
+const Types = { THREAD_WEB: 'THREAD_WEB' }
+
+
 const threadSource = {
-  canDrag(props) {
-    return props.isReady
-  },
-
-  isDragging(props, monitor) {
-    // If your component gets unmounted while dragged
-    // (like a card in Kanban board dragged between lists)
-    // you can implement something like this to keep its
-    // appearance dragged:
-    return monitor.getItem().id === props.id
-  },
-
-  beginDrag(props, monitor, component) {
-    // Return the data describing the dragged item
-
-    // coords here???
-
-    const item = { id: props.id }
-    return item
-  },
-
-  endDrag(props, monitor, component) {
-    if (!monitor.didDrop()) {
-      return
-    }
-
-    // When dropped on a compatible target, do something.
-    // Read the original dragged item from getItem():
-    const item = monitor.getItem()
-
-    // You may also read the drop result from the drop target
-    // that handled the drop, if it returned an object from
-    // its drop() method.
-    const dropResult = monitor.getDropResult()
-
-    CardActions.moveCardToList(item.id, dropResult.listId)
+  beginDrag(props) {
+    return { threadId: props.id }  // possibly unneccessary
   }
 }
 
-// specifies the props to send to component
 const collect = (connect, monitor) => {
   return {
     connectDragSource: connect.dragSource(),
@@ -66,51 +34,36 @@ class Thread extends Component {
 
     // deconstruct d property on <path>
     // reformat into thread object
+        // NaN errors possibly from this
 
-    this.props.sendUpdate(event.target.value) // change
+    this.props.sendUpdate(event.target.value)
   }
 
   render () {
-    const {
-            isDragging,
-            connectDragSource,
-            content,
-            x,
-            y
-    } = this.props
+    console.log('@#$%^&*&^%$#@', this.props)
+    const { isDragging, connectDragSource } = this.props
+    const { content, x, y } = this.props.thread
 
     return connectDragSource(
       <div onChange={ e => this.handleChange(e) } >
-        { isDragging &&
-          <path d={ `M${x.x1} ${y.y1} L${x.x2} ${y.y2} L${x.x3} ${y.y3} L${x.x4} ${y.y4}Z` }
-                stroke-width={ this.props.stroke }
-                stroke={ this.props.strokeWidth }
-                fill={ this.props.fill } >
-            { content }
-          </path>
-        }
+        <path d={ `M${x.x1} ${y.y1} L${x.x2} ${y.y2} L${x.x3} ${y.y3} L${x.x4} ${y.y4}Z` }
+              stroke-width='10'
+              stroke='white'
+              fill='white'
+              style={{ opacity: isDragging ? 0.5 : 1 }} >
+          HELLO THERE HOW ARE YOU???
+        </path>
       </div>
-
-
-      // <div>
-      //   I am a draggable card number {id}
-      //   {isDragging && ' (and I am being dragged now)'}
-      // </div>
     )
   }
 
 }
 
-const MapPropsToProps = state => ({
-  web: state.web,
-})
-
-const MapDispatchToProps = dispatch => ({
-  fetchThread: threadId => dispatch(fetchThread(threadId)),
-  createThread: thread => dispatch(createThread(thread)),
-  sendUpdate: thread => dispatch(sendUpdate(thread))
-})
+Thread.propTypes = {
+  connectDragSource: PropTypes.func.isRequired,
+  isDragging: PropTypes.bool.isRequired
+}
 
 
-DragSource(Types.THREAD_WEB, threadSource, collect)(Thread)
-export default connect(MapPropsToProps, MapDispatchToProps)(Thread)
+export default DragSource(Types.THREAD_WEB, threadSource, collect)(Thread)
+
