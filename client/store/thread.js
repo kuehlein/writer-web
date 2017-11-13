@@ -12,16 +12,16 @@ const initialState = {
   x: {
     x1: 20,
     x2: 20,
-    x3: 60,
-    x4: 60
+    x3: 50,
+    x4: 50
   },
   y: {
     y1: 30,
-    y2: 70,
-    y3: 70,
+    y2: 60,
+    y3: 60,
     y4: 30
   },
-  strokeWidth: 5,
+  strokeWidth: 0,
   stroke: '#e0d9ce',
   fill: '#1b1a19',
   connections: [],

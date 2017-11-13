@@ -20,11 +20,11 @@ class Deck extends Component {
     return (
       <div onChange={ e => this.handleChange(e) } >
         <Thread className='layer2'
-        web={ this.props.web }
-        thread={ this.props.thread }
-        fetchThread={ this.props.fetchThread }
-        createThread={ this.props.createThread }
-        sendUpdate={ this.props.sendUpdate } />
+                web={ this.props.web }
+                thread={ this.props.thread }
+                fetchThread={ this.props.fetchThread }
+                createThread={ this.props.createThread }
+                sendUpdate={ this.props.sendUpdate } />
       </div>
     )
   }
